@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumina Learn — Complete Interview Preparation Notes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-light: #6366f1;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --bg: #ffffff;
+      --surface: #f8fafc;
+      --border: #e2e8f0;
+      --accent: #0ea5e9;
+      --success: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      background-color: #f1f5f9;
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--bg);
+      padding: 50px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+
+    .header-title h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .header-title p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .print-btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+
+    .print-btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-1px);
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      color: var(--primary);
+      border-bottom: 2px solid #e0e7ff;
+      padding-bottom: 6px;
+      margin: 30px 0 16px;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      color: #0f172a;
+      margin: 20px 0 10px;
+    }
+
+    p, li {
+      color: #334155;
+      font-size: 0.98rem;
+      margin-bottom: 10px;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .pitch-box {
+      background: #eef2ff;
+      border-left: 5px solid var(--primary);
+      padding: 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 20px 0;
+      font-style: italic;
+      color: #1e1b4b;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .card h4 {
+      color: var(--primary);
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    th {
+      background: #f8fafc;
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      color: #b91c1c;
+    }
+
+    .qa-block {
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .qa-q {
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .qa-a {
+      color: #334155;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+      .container {
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      .print-btn {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header-bar">
+      <div class="header-title">
+        <h1>⚡ Lumina Learn — Interview Notes</h1>
+        <p>Full-Stack Project Architecture, File Guide & Interview Cheat-Sheet</p>
+      </div>
+      <button class="print-btn" onclick="window.print()">
+        🖨️ Print / Save as PDF
+      </button>
+    </div>
+
+    <!-- 1. The 60-Second Pitch -->
+    <h2>🎯 1. The 60-Second Interview Elevator Pitch</h2>
+    <div class="pitch-box">
+      "I built <strong>Lumina Learn</strong>, a full-stack EdTech course selling marketplace and LMS. On the backend, it uses <strong>Node.js and Express</strong> with a <strong>dual-secret JWT Role-Based Access Control (RBAC)</strong> system separating students and instructors. I engineered a resilient hybrid data layer using <strong>Mongoose with an automatic in-memory fallback</strong> that allows zero-downtime execution without local database dependencies. On the frontend, I crafted a dark-mode glassmorphic SPA in <strong>HTML5, Vanilla CSS, and JavaScript</strong> with multi-filtering, video curriculum players, progress tracking, and creator analytics. The project includes an automated 13-point test suite and Docker containerization."
+    </div>
+
+    <!-- 2. Folder-by-Folder Breakdown -->
+    <h2>📂 2. Folder-by-Folder Technical Breakdown</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h4>📄 config.js</h4>
+        <p>Loads <code>.env</code> with <code>dotenv</code>. Centralizes port numbers, MongoDB connection strings, and user/admin JWT secret keys.</p>
+      </div>
+      <div class="card">
+        <h4>📄 db.js</h4>
+        <p>Defines 5 Mongoose schemas (User, Admin, Course, Purchase, Review). Contains the <strong>Universal Query Layer</strong> and in-memory mock fallback engine.</p>
+      </div>
+      <div class="card">
+        <h4>📄 index.js</h4>
+        <p>Main Express application entry point. Mounts middlewares (CORS, JSON), static file serving (<code>/public</code>), REST API routes, and SPA fallback.</p>
+      </div>
+      <div class="card">
+        <h4>🛡️ /middleware</h4>
+        <p><code>user.js</code> and <code>admin.js</code> handle cryptographic token verification, header parsing, and attaching identity payloads (<code>req.userId</code>, <code>req.adminId</code>).</p>
+      </div>
+      <div class="card">
+        <h4>📡 /routes</h4>
+        <p><code>user.js</code> (auth, profile, progress), <code>course.js</code> (catalog, purchase, reviews), and <code>admin.js</code> (analytics, course CRUD).</p>
+      </div>
+      <div class="card">
+        <h4>💻 /public (SPA Frontend)</h4>
+        <p><code>index.html</code> (views & modals), <code>styles.css</code> (design system & dark theme), <code>api.js</code> (state & fetch client), and <code>app.js</code> (DOM controller).</p>
+      </div>
+    </div>
+
+    <!-- 3. Key Architectural Decisions -->
+    <h2>📐 3. Key Architectural Highlights</h2>
+    <ul>
+      <li><strong>Dual-Secret JWT Security:</strong> Student tokens are signed with <code>JWT_USER_PASSWORD</code> while Admin tokens use <code>JWT_ADMIN_PASSWORD</code>. Prevents signature spoofing and privilege escalation.</li>
+      <li><strong>Bcrypt Password Hashing:</strong> Salt rounds = 10. Defends against rainbow tables and brute-force cracking.</li>
+      <li><strong>Progress Calculation Formula:</strong> <code>(Completed Lessons / Total Lessons) * 100</code> calculated dynamically per purchase record.</li>
+      <li><strong>Graceful Database Fallback:</strong> Catches MongoDB timeouts (2s) and transparently switches to the in-memory engine pre-seeded with realistic data.</li>
+    </ul>
+
+    <!-- 4. Top Technical Q&A -->
+    <h2>💡 4. High-Yield Interview Questions & Answers</h2>
+
+    <div class="qa-block">
+      <div class="qa-q">Q1: Why did you separate student and instructor JWT secrets?</div>
+      <div class="qa-a">"Separating secrets provides cryptographic privilege separation. Even if a student modifies their token payload to say <code>role: admin</code>, the signature will fail verification against the admin secret. This stops privilege escalation at the signature level rather than relying solely on payload claims."</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-q">Q2: How does the in-memory fallback layer work in db.js?</div>
+      <div class="qa-a">"On server startup, <code>connectDB()</code> tries to connect to MongoDB with a 2000ms timeout. If unreachable, an internal flag <code>isConnectedToMongo</code> remains false, and our universal query layer routes all database queries to an in-memory mock store pre-seeded with courses and accounts."</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-q">Q3: How do you handle Single Page Application (SPA) routing in Express?</div>
+      <div class="qa-a">"Express serves API routes under <code>/api/*</code>. For any other web route, a wildcard route <code>app.get('*')</code> returns <code>public/index.html</code>. This allows client-side JavaScript to control view transitions without returning 404 on page reload."</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-q">Q4: How would you scale this application to handle 100k+ concurrent users?</div>
+      <div class="qa-a">"1. Horizontal scaling with Docker containers behind an NGINX / ALB load balancer (since JWT auth is completely stateless). 2. Add compound indexes on MongoDB collections (e.g. <code>userId + courseId</code> on Purchases). 3. Implement Redis caching for course preview endpoints. 4. Stream videos via Cloudflare R2 / AWS S3 + CDN."</div>
+    </div>
+
+    <!-- 5. Credentials Table -->
+    <h2>🚀 5. Pre-seeded Demo Credentials</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Role</th>
+          <th>Email</th>
+          <th>Password</th>
+          <th>Capabilities</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Student</strong></td>
+          <td><code>student@demo.com</code></td>
+          <td><code>password123</code></td>
+          <td>Catalog discovery, course purchase, lesson player, progress tracking, reviews</td>
+        </tr>
+        <tr>
+          <td><strong>Admin</strong></td>
+          <td><code>admin@demo.com</code></td>
+          <td><code>password123</code></td>
+          <td>Creator Studio, analytics KPIs, course management & curriculum creation</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</body>
+</html>
