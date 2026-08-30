@@ -1,16 +1,35 @@
 {
-  "name": "coursesellingapp",
+  "name": "lumina-course-selling-app",
   "version": "1.0.0",
+  "description": "Full-Stack EdTech Course Selling Marketplace with JWT Authentication, Role-Based Access Control, Admin Creator Studio, and Interactive Student Learning Experience.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "test": "node test.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": [
+    "edtech",
+    "course-selling",
+    "marketplace",
+    "full-stack",
+    "express",
+    "mongodb",
+    "jwt",
+    "rbac",
+    "node-js",
+    "javascript"
+  ],
+  "author": "Ariba Naz",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aribanaz11/Course-Selling-App.git"
+  },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.2",
