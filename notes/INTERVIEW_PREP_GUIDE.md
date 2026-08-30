@@ -2,6 +2,9 @@
 
 This guide contains everything you need to know about the **Lumina Learn Course-Selling App** to speak with confidence in full-stack, backend, or JavaScript engineering interviews.
 
+- **Live Deployed App:** [https://course-selling-app-sxn6.onrender.com](https://course-selling-app-sxn6.onrender.com)
+- **GitHub Repository:** [https://github.com/aribanaz11/Course-Selling-App](https://github.com/aribanaz11/Course-Selling-App)
+
 ---
 
 ## 📌 1. The 60-Second Elevator Pitch

@@ -8,7 +8,7 @@ Includes separate role-based portals for students and instructors, JWT authentic
 
 ## Quick Access & Live Links
 
-- **Live Application Demo:** [https://course-selling-app-ariba.onrender.com](https://course-selling-app-ariba.onrender.com)
+- **Live Application Demo:** [https://course-selling-app-sxn6.onrender.com](https://course-selling-app-sxn6.onrender.com)
 - **GitHub Repository:** [https://github.com/aribanaz11/Course-Selling-App](https://github.com/aribanaz11/Course-Selling-App)
 - **Local Dev Server:** `http://localhost:30001` (or your configured `PORT`)
 
