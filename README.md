@@ -2,6 +2,8 @@
 
 # ⚡ Lumina Learn — Full-Stack Course Selling & Learning Marketplace
 
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Access_Platform-6366F1?style=for-the-badge&logo=render&logoColor=white)](https://course-selling-app-ariba.onrender.com)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/aribanaz11/Course-Selling-App)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![Express.js](https://img.shields.io/badge/Express.js-4.21-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongoosejs.com/)
@@ -13,7 +15,10 @@
   A state-of-the-art, full-stack EdTech course platform and marketplace built with modern Node.js, Express, MongoDB/Mongoose, JWT authentication, and a responsive frontend with dark-mode glassmorphism aesthetics.
 </p>
 
-[Explore Features](#-features) •
+### 🔗 [👉 Launch Live Web Application 👈](https://course-selling-app-ariba.onrender.com) 🔗
+
+[Live Links](#-live-links--demo-access) •
+[Features](#-key-features) •
 [Quickstart](#-quickstart-guide) •
 [Demo Credentials](#-instant-demo-accounts) •
 [API Reference](#-api-documentation) •
@@ -21,6 +26,27 @@
 [Contributing](#-contributing)
 
 </div>
+
+---
+
+## 🌐 Live Links & Demo Access
+
+| Environment | Link / URL | Description |
+| :--- | :--- | :--- |
+| **🚀 Production Cloud App** | **[https://course-selling-app-ariba.onrender.com](https://course-selling-app-ariba.onrender.com)** | Hosted live on Cloud Platform |
+| **💻 Local Environment** | `http://localhost:30001` or `http://localhost:3000` | Run locally with `npm start` |
+| **🐙 GitHub Repository** | **[github.com/aribanaz11/Course-Selling-App](https://github.com/aribanaz11/Course-Selling-App)** | Complete Open-Source Codebase |
+
+---
+
+## 🚀 Instant Demo Accounts
+
+You can test drive the entire application immediately using the live demo chips in the header or with the following credentials:
+
+| Role | Email | Password | Access Capabilities |
+| :--- | :--- | :--- | :--- |
+| **🎓 Student** | `student@demo.com` | `password123` | Browse catalog, enroll in courses, track lesson progress, submit reviews |
+| **👑 Admin / Instructor** | `admin@demo.com` | `password123` | Creator Studio, publish courses, view revenue analytics, edit curriculum |
 
 ---
 
@@ -43,18 +69,7 @@
 - **Dual JWT RBAC**: Independent cryptographically signed tokens for students and admin instructors.
 - **Password Hashing**: Secure salted bcrypt password hashing.
 - **Graceful High-Performance Fallback**: Built-in in-memory fallback layer with realistic seed data — runs out-of-the-box even without a local MongoDB daemon installed!
-- **Containerized**: Production-ready `Dockerfile` and `.dockerignore`.
-
----
-
-## 🚀 Instant Demo Accounts
-
-You can test drive the entire application immediately using the live demo chips or with the following credentials:
-
-| Role | Email | Password | Access Capabilities |
-| :--- | :--- | :--- | :--- |
-| **🎓 Student** | `student@demo.com` | `password123` | Browse catalog, enroll in courses, track lesson progress, submit reviews |
-| **👑 Admin / Instructor** | `admin@demo.com` | `password123` | Creator Studio, publish courses, view revenue analytics, edit curriculum |
+- **Containerized**: Production-ready `Dockerfile`, `docker-compose.yml`, and `render.yaml`.
 
 ---
 
@@ -186,6 +201,11 @@ docker build -t lumina-course-app .
 docker run -p 3000:3000 --name lumina-app lumina-course-app
 ```
 
+Or deploy both the app and a MongoDB cluster using Docker Compose:
+```bash
+docker compose up -d
+```
+
 ---
 
 ## 📡 API Documentation
@@ -231,7 +251,10 @@ Course-Selling-App/
 ├── .env.example          # Environment variable template
 ├── .gitignore            # Git ignore definitions
 ├── Dockerfile            # Docker container definition
-├── README.md             # Project documentation
+├── docker-compose.yml    # Full-stack container composition
+├── render.yaml           # 1-Click Render blueprint
+├── vercel.json           # Vercel deployment configuration
+├── README.md             # Project documentation with live links
 ├── config.js             # Configuration loader
 ├── db.js                 # Mongoose schemas & fallback data engine
 ├── index.js              # Express app server and entry point
