@@ -1,168 +1,197 @@
-<div align="center">
+# Lumina Learn — Full-Stack Course Selling & Learning Marketplace
 
-# ⚡ Lumina Learn — Full-Stack Course Selling & Learning Marketplace
+A full-stack, production-ready course selling platform and student learning management system built with **Node.js**, **Express**, and **MongoDB / Mongoose**, paired with a custom dark-mode SPA frontend.
 
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Access_Platform-6366F1?style=for-the-badge&logo=render&logoColor=white)](https://course-selling-app-ariba.onrender.com)
-[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/aribanaz11/Course-Selling-App)
-[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
-[![Express.js](https://img.shields.io/badge/Express.js-4.21-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongoosejs.com/)
-[![JWT Auth](https://img.shields.io/badge/Auth-JWT_&_Bcrypt-blueviolet?style=for-the-badge&logo=jsonwebtokens&logoColor=white)](https://jwt.io/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-
-<p align="center">
-  A state-of-the-art, full-stack EdTech course platform and marketplace built with modern Node.js, Express, MongoDB/Mongoose, JWT authentication, and a responsive frontend with dark-mode glassmorphism aesthetics.
-</p>
-
-### 🔗 [👉 Launch Live Web Application 👈](https://course-selling-app-ariba.onrender.com) 🔗
-
-[Live Links](#-live-links--demo-access) •
-[Features](#-key-features) •
-[Quickstart](#-quickstart-guide) •
-[Demo Credentials](#-instant-demo-accounts) •
-[API Reference](#-api-documentation) •
-[Architecture](#-system-architecture) •
-[Contributing](#-contributing)
-
-</div>
+Includes separate role-based portals for students and instructors, JWT authentication, lesson progress tracking, course reviews, revenue analytics, an automated test harness, and an in-memory fallback engine that lets you run and test the app immediately even without a local MongoDB instance running.
 
 ---
 
-## 🌐 Live Links & Demo Access
+## Quick Access & Live Links
 
-| Environment | Link / URL | Description |
-| :--- | :--- | :--- |
-| **🚀 Production Cloud App** | **[https://course-selling-app-ariba.onrender.com](https://course-selling-app-ariba.onrender.com)** | Hosted live on Cloud Platform |
-| **💻 Local Environment** | `http://localhost:30001` or `http://localhost:3000` | Run locally with `npm start` |
-| **🐙 GitHub Repository** | **[github.com/aribanaz11/Course-Selling-App](https://github.com/aribanaz11/Course-Selling-App)** | Complete Open-Source Codebase |
+- **Live Application Demo:** [https://course-selling-app-ariba.onrender.com](https://course-selling-app-ariba.onrender.com)
+- **GitHub Repository:** [https://github.com/aribanaz11/Course-Selling-App](https://github.com/aribanaz11/Course-Selling-App)
+- **Local Dev Server:** `http://localhost:30001` (or your configured `PORT`)
 
----
+### Demo Credentials
 
-## 🚀 Instant Demo Accounts
+The database seeds automatically on boot with two accounts for testing both workflows:
 
-You can test drive the entire application immediately using the live demo chips in the header or with the following credentials:
-
-| Role | Email | Password | Access Capabilities |
+| Role | Email | Password | What you can test |
 | :--- | :--- | :--- | :--- |
-| **🎓 Student** | `student@demo.com` | `password123` | Browse catalog, enroll in courses, track lesson progress, submit reviews |
-| **👑 Admin / Instructor** | `admin@demo.com` | `password123` | Creator Studio, publish courses, view revenue analytics, edit curriculum |
+| **Student** | `student@demo.com` | `password123` | Course discovery, instant purchase, lesson player, progress tracking, submitting course reviews |
+| **Admin / Instructor** | `admin@demo.com` | `password123` | Creator Studio, platform revenue KPIs, student enrollment stats, creating & editing courses and curriculum |
+
+*(Tip: You can also use the 1-click login chips in the top notification bar to sign in instantly without typing).*
 
 ---
 
-## 🌟 Key Features
+## Why this was built & Technical Highlights
 
-### 🎓 Student Experience
-- **Interactive Course Catalog**: Real-time multi-criteria filtering by category, search keywords, difficulty level, and sorting (price, popularity, rating).
-- **Rich Course Detail Modals**: High-definition preview player, curriculum breakdown with duration badges, instructor bios, student reviews, and highlights.
-- **One-Click Enrollment & Checkout**: Streamlined instant purchase flow with payment simulation.
-- **My Learning Dashboard**: Real-time progress percentage, lesson checklist, and video learning classroom.
-- **Course Ratings & Reviews**: Leave feedback and dynamically recalculate course community ratings.
+1. **Dual JWT Role-Based Access Control (RBAC)**
+   - Independent secret keys for students (`JWT_USER_PASSWORD`) and instructors (`JWT_ADMIN_PASSWORD`).
+   - Tokens carry role claims and are validated through dedicated Express middleware (`userMiddleware`, `adminMiddleware`) supporting both `Authorization: Bearer <token>` and `token: <token>` headers.
 
-### 👑 Instructor & Creator Studio
-- **Executive Analytics Dashboard**: Instant KPIs tracking Gross Revenue, Active Enrolled Students, Total Sales, and Average Platform Rating.
-- **Course Publishing Suite**: Modal-based course creator with curriculum section/lesson builders, pricing, badges (Bestseller/Featured), and tags.
-- **Course Management & CRUD**: Edit live course titles, pricing, descriptions, and delete deprecated content.
-- **Individual Course Performance**: Granular revenue and enrollment tracking per course.
+2. **Resilient Data Layer (Hybrid MongoDB + In-Memory Store)**
+   - When MongoDB is running, Mongoose models handle persistence with schema validation, indexing, and document relations.
+   - If MongoDB is unreachable (e.g. during quick local dev or CI), the app catches the connection timeout and seamlessly falls back to a high-performance in-memory mock store populated with realistic seed courses, reviews, and admin data. No crash, no complex local database setup required.
 
-### 🛡️ Architecture & Security
-- **Dual JWT RBAC**: Independent cryptographically signed tokens for students and admin instructors.
-- **Password Hashing**: Secure salted bcrypt password hashing.
-- **Graceful High-Performance Fallback**: Built-in in-memory fallback layer with realistic seed data — runs out-of-the-box even without a local MongoDB daemon installed!
-- **Containerized**: Production-ready `Dockerfile`, `docker-compose.yml`, and `render.yaml`.
+3. **Complete Student Learning Lifecycle**
+   - Browse catalog with real-time multi-filter (category, search query, difficulty level, price/popularity/rating sort).
+   - Video modal player with modular curriculum (sections and lessons).
+   - Automatic percentage calculation upon completing individual lessons.
+   - Course review submission with dynamic average rating recalculation.
+
+4. **Instructor Studio & Analytics**
+   - Live calculations for total revenue, unique active students, overall sales, and average course ratings.
+   - Full course CRUD with nested curriculum builder (sections, video URLs, duration, preview flags).
 
 ---
 
-## 📐 System Architecture
+## Architecture Overview
 
 ```mermaid
-graph TD
-    Client["💻 Client Web App (HTML5 / Vanilla CSS / Modern JS)"]
-    
-    subgraph ExpressAPI ["⚡ Express REST API Layer"]
-        UserRoutes["/api/v1/user (Auth, Profile, Purchases, Progress)"]
-        CourseRoutes["/api/v1/course (Browse, Details, Purchase, Reviews)"]
-        AdminRoutes["/api/v1/admin (Studio, Course CRUD, Analytics)"]
-        HealthRoute["/api/health (Uptime Monitoring)"]
-    end
-    
-    subgraph Middlewares ["🛡️ Security & Auth Middleware"]
-        UserJWT["userMiddleware (JWT Verification)"]
-        AdminJWT["adminMiddleware (Admin JWT Verification)"]
-        CORS["CORS & Body Parsers"]
+flowchart TD
+    subgraph Client ["Client Layer (Vanilla JS SPA)"]
+        UI["Modern Glassmorphism UI\n(index.html + styles.css)"]
+        APIClient["API Client & State Manager\n(api.js)"]
+        AppCtrl["View Controller & Event Handlers\n(app.js)"]
+        UI <--> AppCtrl
+        AppCtrl <--> APIClient
     end
 
-    subgraph DataLayer ["💾 Resilient Data Layer"]
-        MongooseConn["Mongoose ORM"]
-        MongoDB[("🍃 MongoDB Database")]
-        InMemoryStore[("⚡ High-Performance Built-in Store (Fallback)")]
+    subgraph Server ["Node.js / Express Server (index.js)"]
+        Router["Express Router (/api/v1)"]
+        UserMW["userMiddleware (JWT)"]
+        AdminMW["adminMiddleware (JWT)"]
+        
+        UserRoutes["routes/user.js\n- signup / signin\n- profile\n- purchases\n- lesson progress"]
+        CourseRoutes["routes/course.js\n- preview / search / filter\n- course details\n- purchase flow\n- review submit"]
+        AdminRoutes["routes/admin.js\n- signup / signin\n- course CRUD\n- analytics KPIs"]
+        
+        Router --> CourseRoutes
+        Router --> UserMW --> UserRoutes
+        Router --> AdminMW --> AdminRoutes
     end
 
-    Client --> CORS
-    CORS --> ExpressAPI
-    UserRoutes --> UserJWT
-    AdminRoutes --> AdminJWT
-    ExpressAPI --> DataLayer
-    DataLayer -->|If Connected| MongoDB
-    DataLayer -->|If Offline| InMemoryStore
+    subgraph Storage ["Data Layer (db.js)"]
+        DBRouter{"MongoDB Connected?"}
+        MongoStore[("MongoDB (Mongoose ORM)\nUsers | Admins | Courses | Purchases | Reviews")]
+        MemoryStore[("In-Memory Store\nPre-seeded with demo records")]
+        
+        DBRouter -->|Yes| MongoStore
+        DBRouter -->|No / Offline| MemoryStore
+    end
+
+    APIClient -->|HTTP / JSON| Router
+    UserRoutes --> Storage
+    CourseRoutes --> Storage
+    AdminRoutes --> Storage
 ```
 
 ---
 
-## 💻 Quickstart Guide
+## Database Schemas & Data Model
+
+The data layer in [`db.js`](file:///c:/Users/Admin/Course-Selling-App/db.js) defines five Mongoose schemas:
+
+- **`User`**: `email` (unique, lowercase), `password` (bcrypt hash), `firstName`, `lastName`, `avatar`, `role`, `createdAt`.
+- **`Admin`**: `email` (unique), `password` (bcrypt hash), `firstName`, `lastName`, `avatar`, `title`, `bio`, `createdAt`.
+- **`Course`**:
+  - `title`, `subtitle`, `description`, `price`, `originalPrice`, `imageUrl`, `category`, `level`, `duration`, `lessonsCount`
+  - `rating`, `reviewsCount`, `enrolledCount`, `instructorId`, `instructorName`, `instructorAvatar`, `highlights[]`, `tags[]`, `featured`, `bestseller`
+  - `curriculum`: Array of sections, each containing `title` and `lessons[]` (`title`, `duration`, `videoUrl`, `summary`, `isPreview`).
+- **`Purchase`**: `userId` (ref User), `courseId` (ref Course), `pricePaid`, `purchasedAt`, `status`, `completedLessons[]`, `progressPercentage`.
+- **`Review`**: `courseId` (ref Course), `userId` (ref User), `userName`, `userAvatar`, `rating` (1-5), `comment`, `createdAt`.
+
+---
+
+## REST API Reference
+
+### 1. Public Endpoints
+
+| Method | Endpoint | Description | Query / Body Parameters |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/health` | Service health & uptime status | None |
+| `GET` | `/api/v1/course/preview` | Filter & search courses | `?category=Web+Development&search=nextjs&level=All&sort=price-low` |
+| `GET` | `/api/v1/course/categories` | Grouped categories with counts | None |
+| `GET` | `/api/v1/course/:id` | Course detail and its reviews | Route param `:id` |
+| `POST` | `/api/v1/user/signup` | Student registration | `email`, `password`, `firstName`, `lastName` |
+| `POST` | `/api/v1/user/signin` | Student login (returns JWT) | `email`, `password` |
+| `POST` | `/api/v1/admin/signup` | Instructor registration | `email`, `password`, `firstName`, `lastName`, `title`, `bio` |
+| `POST` | `/api/v1/admin/signin` | Instructor login (returns JWT) | `email`, `password` |
+
+### 2. Student Endpoints (Header: `Authorization: Bearer <user_token>`)
+
+| Method | Endpoint | Description | Body Parameters |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/v1/user/profile` | Current user profile | None |
+| `PUT` | `/api/v1/user/profile` | Update profile fields | `firstName`, `lastName`, `avatar` |
+| `GET` | `/api/v1/user/purchases` | List user's enrolled courses | None |
+| `POST` | `/api/v1/course/purchase` | Enroll in a course | `{ "courseId": "..." }` |
+| `POST` | `/api/v1/course/:id/review` | Submit course review & rating | `{ "rating": 5, "comment": "Great course!" }` |
+| `POST` | `/api/v1/user/progress` | Mark lesson completed & update progress % | `{ "courseId": "...", "lessonId": "..." }` |
+
+### 3. Instructor Endpoints (Header: `Authorization: Bearer <admin_token>`)
+
+| Method | Endpoint | Description | Body Parameters |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/v1/admin/profile` | Instructor profile | None |
+| `GET` | `/api/v1/admin/analytics` | Revenue, enrollment & sales metrics | None |
+| `GET` | `/api/v1/admin/course/bulk` | All courses created by instructors | None |
+| `POST` | `/api/v1/admin/course` | Create a new course | Full course object (title, price, description, curriculum, etc.) |
+| `PUT` | `/api/v1/admin/course/:id` | Update an existing course | Updated fields |
+| `DELETE` | `/api/v1/admin/course/:id` | Remove course from marketplace | Route param `:id` |
+
+---
+
+## Local Setup & Development
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/) (v18 or higher)
-- [npm](https://www.npmjs.com/) (v9 or higher)
-- *(Optional)* [MongoDB](https://www.mongodb.com/) (if offline, the app runs smoothly with the built-in resilient data engine)
+- **Node.js** >= 18.0.0
+- **npm** >= 9.0.0
+- *(Optional)* **MongoDB** running on `mongodb://127.0.0.1:27017`
 
-### 1. Clone the Repository
+### 1. Clone & Install
 ```bash
 git clone https://github.com/aribanaz11/Course-Selling-App.git
 cd Course-Selling-App
-```
-
-### 2. Install Dependencies
-```bash
 npm install
 ```
 
-### 3. Configure Environment Variables
-Copy the sample environment file:
+### 2. Configure Environment
 ```bash
 cp .env.example .env
 ```
-Default `.env` settings:
+Default `.env` configuration:
 ```env
-PORT=3000
+PORT=30001
 MONGO_URL=mongodb://127.0.0.1:27017/course_app
 JWT_USER_PASSWORD=lumina_user_secret_key_2026
 JWT_ADMIN_PASSWORD=lumina_admin_secret_key_2026
 ```
 
-### 4. Run the Application
-#### Development Mode (with hot-reload):
-```bash
-npm run dev
-```
-#### Production Mode:
-```bash
-npm start
-```
-
-Visit **`http://localhost:3000`** in your browser!
+### 3. Run the App
+- **Development (with hot-reload via nodemon):**
+  ```bash
+  npm run dev
+  ```
+- **Production start:**
+  ```bash
+  npm start
+  ```
+Open `http://localhost:30001` in your browser.
 
 ---
 
-## 🧪 Automated Testing
+## Running the Automated Test Suite
 
-The project includes an end-to-end integration test suite that tests all 13 core REST API endpoints (authentication, course creation, enrollment, reviews, analytics):
+The repository includes a self-contained integration test harness in [`test.js`](file:///c:/Users/Admin/Course-Selling-App/test.js). It starts an isolated in-process test server and runs 13 end-to-end assertions against the REST API:
 
 ```bash
 npm test
 ```
 
-Sample test output:
+Expected output:
 ```text
 ===============================================================
  🧪 Lumina Learn Automated Integration Test Suite
@@ -189,107 +218,77 @@ Sample test output:
 
 ---
 
-## 🐳 Docker Deployment
+## Deployment Options
 
-You can build and run the entire application inside a Docker container:
+### 1. Render (1-Click Blueprint)
+The repo contains [`render.yaml`](file:///c:/Users/Admin/Course-Selling-App/render.yaml). In your Render dashboard:
+1. Click **New +** ➔ **Blueprint**.
+2. Connect `aribanaz11/Course-Selling-App`.
+3. Render automatically sets up build commands, health check endpoints, and starts the service.
 
+### 2. Docker
+Build and run a standalone container:
 ```bash
-# Build the Docker image
 docker build -t lumina-course-app .
-
-# Run the container
 docker run -p 3000:3000 --name lumina-app lumina-course-app
 ```
 
-Or deploy both the app and a MongoDB cluster using Docker Compose:
+### 3. Docker Compose (App + MongoDB)
+Spin up both the Node.js application and a MongoDB instance with persistent volume storage:
 ```bash
 docker compose up -d
 ```
 
----
-
-## 📡 API Documentation
-
-### 🔓 Public Endpoints
-| Method | Route | Description |
-| :--- | :--- | :--- |
-| `GET` | `/api/health` | Health check and uptime status |
-| `GET` | `/api/v1/course/preview` | Browse all courses with search, category, and sort queries |
-| `GET` | `/api/v1/course/categories` | Retrieve all course categories and counts |
-| `GET` | `/api/v1/course/:id` | Get detailed course view and reviews |
-| `POST` | `/api/v1/user/signup` | Register a new student account |
-| `POST` | `/api/v1/user/signin` | Sign in student and receive JWT token |
-| `POST` | `/api/v1/admin/signup` | Register a new instructor account |
-| `POST` | `/api/v1/admin/signin` | Sign in instructor and receive Admin JWT token |
-
-### 🎓 Student Endpoints *(Requires User Bearer Token)*
-| Method | Route | Description |
-| :--- | :--- | :--- |
-| `GET` | `/api/v1/user/profile` | Fetch authenticated student profile |
-| `PUT` | `/api/v1/user/profile` | Update student profile information |
-| `GET` | `/api/v1/user/purchases` | Fetch enrolled courses and progress |
-| `POST` | `/api/v1/course/purchase` | Enroll and purchase a course |
-| `POST` | `/api/v1/course/:id/review` | Submit a course rating (1-5) and review |
-| `POST` | `/api/v1/user/progress` | Mark lesson completed and update progress percentage |
-
-### 👑 Admin / Creator Endpoints *(Requires Admin Bearer Token)*
-| Method | Route | Description |
-| :--- | :--- | :--- |
-| `GET` | `/api/v1/admin/profile` | Fetch instructor profile details |
-| `GET` | `/api/v1/admin/analytics` | Retrieve platform revenue, sales, and student metrics |
-| `GET` | `/api/v1/admin/course/bulk` | Retrieve all courses managed by instructor |
-| `POST` | `/api/v1/admin/course` | Publish a new course with curriculum |
-| `PUT` | `/api/v1/admin/course/:id` | Update an existing course |
-| `DELETE` | `/api/v1/admin/course/:id` | Delete a course from marketplace |
+### 4. Vercel
+Configured via [`vercel.json`](file:///c:/Users/Admin/Course-Selling-App/vercel.json) to route API calls to `index.js` and serve frontend assets statically.
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 Course-Selling-App/
-├── .env.example          # Environment variable template
-├── .gitignore            # Git ignore definitions
-├── Dockerfile            # Docker container definition
-├── docker-compose.yml    # Full-stack container composition
-├── render.yaml           # 1-Click Render blueprint
-├── vercel.json           # Vercel deployment configuration
-├── README.md             # Project documentation with live links
-├── config.js             # Configuration loader
-├── db.js                 # Mongoose schemas & fallback data engine
-├── index.js              # Express app server and entry point
-├── package.json          # Node.js dependencies & scripts
-├── test.js               # Automated integration test suite
+├── .env.example          # Template for environment variables
+├── .gitignore            # Excludes node_modules, .env, and logs
+├── Dockerfile            # Lightweight Alpine container configuration
+├── docker-compose.yml    # Multi-container orchestration (App + MongoDB)
+├── render.yaml           # Infrastructure-as-code for Render deployment
+├── vercel.json           # Serverless routing config for Vercel
+├── README.md             # Project documentation & API guide
+├── config.js             # Environment variable loader
+├── db.js                 # Schemas, seed loader & hybrid query layer
+├── index.js              # Express app, middleware stack & route bindings
+├── package.json          # Dependencies, metadata & test script
+├── test.js               # Automated integration test harness
 ├── middleware/
-│   ├── admin.js          # Admin JWT verification middleware
-│   └── user.js           # Student JWT verification middleware
+│   ├── admin.js          # Instructor JWT validation & claims extraction
+│   └── user.js           # Student JWT validation & claims extraction
 ├── routes/
-│   ├── admin.js          # Admin & Creator Studio routes
-│   ├── course.js         # Public courses, purchase & review routes
-│   └── user.js           # Student profile, auth & progress routes
-└── public/               # Frontend Single-Page Application
-    ├── index.html        # Main HTML layout & modals
+│   ├── admin.js          # Instructor auth, course CRUD & analytics routes
+│   ├── course.js         # Public course discovery, purchase & review routes
+│   └── user.js           # Student auth, profile & progress routes
+└── public/               # Frontend SPA
+    ├── index.html        # Semantic HTML layout, modals & templates
     ├── css/
-    │   └── styles.css    # Modern Dark Theme Glassmorphism styles
+    │   └── styles.css    # Responsive dark-theme design system & animations
     └── js/
-        ├── api.js        # API Client and state manager
-        └── app.js        # UI controller and interactive event handlers
+        ├── api.js        # API wrapper, token persistence & toast manager
+        └── app.js        # UI controller, course filtering & video player
 ```
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
-Contributions are warmly welcomed! To contribute:
-
-1. **Fork** the repository
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a **Pull Request**
+1. Fork the project.
+2. Create your feature branch: `git checkout -b feature/my-feature`.
+3. Commit your changes: `git commit -m "feat: add my new feature"`.
+4. Verify with test suite: `npm test`.
+5. Push to branch: `git push origin feature/my-feature`.
+6. Open a Pull Request.
 
 ---
 
-## 📄 License
+## License
 
-Distributed under the **MIT License**. See `LICENSE` for more information.
+MIT License — see [LICENSE](file:///c:/Users/Admin/Course-Selling-App/LICENSE) for details.
