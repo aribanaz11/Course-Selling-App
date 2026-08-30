@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: lumina-course-selling-app
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_USER_PASSWORD
+        generateValue: true
+      - key: JWT_ADMIN_PASSWORD
+        generateValue: true
